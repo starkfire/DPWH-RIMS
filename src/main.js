@@ -7,6 +7,8 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 
+import './assets/styles.css'
+
 Vue.use(VueRouter)
 Vue.use(ElementUI)
 
