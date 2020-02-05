@@ -8,8 +8,17 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@deck.gl/core": "^8.0.13",
+    "@deck.gl/layers": "^8.0.13",
+    "body-parser": "^1.19.0",
     "core-js": "^3.4.4",
+    "deck.gl": "^8.0.13",
     "element-ui": "^2.13.0",
+    "express": "^4.17.1",
+    "mapbox-gl": "^1.7.0",
+    "mapbox-gl-vue": "^2.0.4",
+    "mongodb": "^3.5.2",
+    "mongoose": "^5.8.11",
     "vue": "^2.6.10"
   },
   "devDependencies": {
