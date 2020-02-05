@@ -9,6 +9,9 @@ Vue.config.productionTip = false
 
 import './assets/styles.css'
 
+// mapbox
+import './assets/styles/mapbox-gl.css'
+
 Vue.use(VueRouter)
 Vue.use(ElementUI)
 
