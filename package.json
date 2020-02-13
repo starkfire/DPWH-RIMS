@@ -10,6 +10,8 @@
   "dependencies": {
     "@deck.gl/core": "^8.0.13",
     "@deck.gl/layers": "^8.0.13",
+    "@turf/turf": "^5.1.6",
+    "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "core-js": "^3.4.4",
     "deck.gl": "^8.0.13",
@@ -19,7 +21,7 @@
     "mapbox-gl-vue": "^2.0.4",
     "mongodb": "^3.5.2",
     "mongoose": "^5.8.11",
-    "vue": "^2.6.10"
+    "vue": "^2.6.11"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.0",
