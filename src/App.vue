@@ -33,13 +33,34 @@ export default {
         return {
             activeIndex: '1'
         }
-    },
+	},
+	computed: {
+		getIndex(){
+			return this.activeIndex
+		}
+	},
+	created(){
+		this.activeIndex = this.getActiveIndex()
+	},
     methods: {
         handleSelect(key, keyPath){
             console.log(key, keyPath)
         },
         navigate(to){
             router.push({ path: to })
+        },
+        getActiveIndex(){
+            let currentUrl = window.location.href
+            currentUrl = currentUrl.split("/")
+            let page = currentUrl[currentUrl.length-1]
+            switch(page){
+				case 'settings':
+					return '3'
+				case 'dashboard':
+					return '2'
+				case '':
+					return '1'
+            }
         }
     }
 }
