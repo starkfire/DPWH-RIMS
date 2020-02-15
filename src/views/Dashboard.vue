@@ -7,28 +7,30 @@
 				class="el-menu-vertical-demo"
 				@open="handleOpen"
 				@close="handleClose"
-				background-color="#111"
+				background-color="#222"
 				text-color="#fff"
 				active-text-color="#ffd04b"
-				style="height: 100%; border-right: 0px;"
+				style="min-height: 768px; border-right: 0px;"
 			>
-				<el-menu-item index="1">
+				<el-menu-item index="1" @click="navigate('/dashboard/potholes')">
 					<i class="el-icon-menu"></i>
 					<span>Asset Manager</span>
 				</el-menu-item>
-				<el-menu-item index="2">
+				<el-menu-item index="2" @click="navigate('/dashboard/map')">
 					<i class="el-icon-map-location"></i>
 					<span>Asset Map</span>
 				</el-menu-item>
 			</el-menu>
         </el-col>
         <el-col :span="20">
-			<!-- Element -->
+			<router-view></router-view>
         </el-col>
     </el-row>
   </div>
 </template>
 <script>
+import router from '../router'
+
 export default {
 	name: 'Dashboard',
 	data() {
@@ -42,6 +44,9 @@ export default {
 		},
 		handleClose(key, keyPath){
 			console.log(key, keyPath)
+		},
+		navigate(to){
+			router.push({ path: to })
 		}
 	}
 }

@@ -73,6 +73,7 @@ export default {
 <style scoped>
 .first-panel{
 	font-family: 'CeraPro Thin';
+	background-color: #111;
 	font-size: 24px;
 	color: #fff;
 }
