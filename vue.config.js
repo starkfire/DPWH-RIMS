@@ -8,5 +8,12 @@ module.exports = {
                 mapboxgl: 'mapbox-gl'
             })
         ]
+    },
+    css: {
+        loaderOptions: {
+            less: {
+                javascriptEnabled: true
+            }
+        }
     }
 }
