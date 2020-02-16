@@ -2,8 +2,8 @@
 	<div>
 		<div class="first-panel">
 			<div id="first-panel-content">
-				<h2 style="letter-spacing: 8px; font-family: 'CeraPro Bold'">DPWH-RIMS</h2>
-				<p>A Smarter Road Inventory Management for the Department of Public Works and Highways</p>
+				<h2 style="letter-spacing: 8px; font-family: 'CeraPro Bold'; color: white;">DPWH-RIMS</h2>
+				<p style="font-family: 'CeraPro Light';">A Smarter Road Inventory Management for the Department of Public Works and Highways</p>
 				<p style="font-family: 'CeraPro Bold'; font-size: 12px;">MADE POSSIBLE WITH</p>
 				<span id="stack-logos">
 					<a href="https://deck.gl/"><img src="../assets/images/uber.png" style="height: 40px;" /></a>
@@ -17,8 +17,8 @@
 			<el-row>
 				<el-col :span="12">
 					<div id="second-panel-content-a">
-						<h2 style="letter-spacing: 4px; font-family: 'CeraPro Bold'">Technology Stack</h2>
-						<p>We use modern and well-maintained open source libraries to provide a competitive edge</p>
+						<h2 style="letter-spacing: 4px; font-family: 'CeraPro Bold'; color: white;">Technology Stack</h2>
+						<p style="font-family: 'CeraPro Light'">We use modern and well-maintained open source libraries to provide a competitive edge</p>
 					</div>
 				</el-col>
 				<el-col :span="12">
@@ -100,7 +100,7 @@ export default {
 #second-panel-content-a{
 	padding-left: 10%;
 	background-color: #55f;
-	padding-bottom: 230px;
+	padding-bottom: 260px;
 	padding-top: 250px;
 }
 
