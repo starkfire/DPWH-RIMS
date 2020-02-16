@@ -9,6 +9,11 @@
 }
 
 @font-face{
+	font-family: "CeraPro Regular";
+	src: url("./fonts/CeraPro-Regular.ttf");
+}
+
+@font-face{
 	font-family: "CeraPro Black";
 	src: url("./fonts/CeraPro-Black.ttf");
 }

@@ -14,7 +14,7 @@
                 >
                     <el-menu-item index="1" @click="navigate('/')">Home</el-menu-item>
                     <el-menu-item index="2" @click="navigate('/dashboard')">Dashboard</el-menu-item>
-                    <el-menu-item index="3" @click="navigate('/settings')">Settings</el-menu-item>
+                    <el-menu-item index="3" @click="navigate('/documentation')">Documentation</el-menu-item>
                 </el-menu>
             </el-header>
             <el-main style="padding: 0px;">
@@ -75,6 +75,10 @@ export default {
 }
 </script>
 <style>
+* {
+    font-family: 'CeraPro Regular';
+}
+
 #app {
     font-family: 'CeraPro Light';
     -webkit-font-smoothing: antialiased;
@@ -83,5 +87,6 @@ export default {
 
 body{
     margin: 0px;
+    background-color: #fff;
 }
 </style>
