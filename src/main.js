@@ -13,6 +13,7 @@ import {
 	Modal,
 	notification,
 	Row,
+	Table,
 	Upload
 } from 'ant-design-vue'
 
@@ -37,6 +38,7 @@ Vue.use(message)
 Vue.use(Modal)
 Vue.use(notification)
 Vue.use(Row)
+Vue.use(Table)
 Vue.use(Upload)
 
 Vue.prototype.$message = message;
