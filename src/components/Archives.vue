@@ -8,6 +8,7 @@
         <a-row>
             <a-table
                 :columns="columns"
+                :rowKey="tableData => tableData._id"
                 :dataSource="tableData"
                 :loading="loading"
             >
