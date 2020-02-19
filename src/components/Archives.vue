@@ -12,6 +12,12 @@
                 :dataSource="tableData"
                 :loading="loading"
             >
+                <span slot="date" slot-scope="item">
+                    {{ item.split('T')[0] }}
+                </span>
+                <span slot="time" slot-scope="item">
+                    {{ item.split('T')[1].split('.')[0] }}
+                </span>
                 <span slot="download" slot-scope="item">
                     <a :href="`http://localhost:3000/archive/${item}`">Download</a>
                 </span>
@@ -26,7 +32,14 @@ const columns = [
     {
         title: 'Date',
         key: 'date',
-        dataIndex: 'date'
+        dataIndex: 'date',
+        scopedSlots: { customRender: 'date' }
+    },
+    {
+        title: 'Time',
+        key: 'time',
+        dataIndex: 'date',
+        scopedSlots: { customRender: 'time' }
     },
     {
         title: 'Filename',
