@@ -12,6 +12,9 @@
                 :dataSource="tableData"
                 :loading="loading"
             >
+                <span slot="download" slot-scope="item">
+                    <a :href="`http://localhost:3000/archive/${item}`">Download</a>
+                </span>
             </a-table>
         </a-row>
     </div>
@@ -29,6 +32,12 @@ const columns = [
         title: 'Filename',
         key: 'name',
         dataIndex: 'name'
+    },
+    {
+        title: 'Download',
+        key: 'download',
+        dataIndex: '_id',
+        scopedSlots: { customRender: 'download' }
     }
 ]
 
