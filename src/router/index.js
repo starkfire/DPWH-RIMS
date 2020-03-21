@@ -10,11 +10,21 @@ const routes = [
     },
     {
         path: '/dashboard',
-        component: Dashboard
-    },
-    {
-        path: '/settings',
-        component: () => import('../views/Settings.vue')
+        component: Dashboard,
+        children: [
+            {
+                path: 'manager',
+                component: () => import('../components/Manager.vue')
+            },
+            {
+                path: 'archives',
+                component: () => import('../components/Archives.vue')
+            },
+            {
+                path: '',
+                component: () => import('../components/Manager.vue')
+            }
+        ]
     }
 ]
 
