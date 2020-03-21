@@ -3,6 +3,7 @@
         <a-row :gutter="12">
             <a-col>
                 <p id="header">Archives</p>
+                <p id="subheader">All stored spreadsheets</p>
             </a-col>
         </a-row>
         <a-row>
@@ -19,7 +20,7 @@
                     {{ item.split('T')[1].split('.')[0] }}
                 </span>
                 <span slot="download" slot-scope="item">
-                    <a :href="`http://localhost:3000/archive/${item}`">Download</a>
+                    <a :href="`http://localhost:3000/api/archive/${item}`">Download</a>
                 </span>
             </a-table>
         </a-row>
@@ -69,7 +70,7 @@ export default {
     methods: {
         fetchArchives(){
             this.loading = true
-            axios.get('http://localhost:3000/archive').then(res => {
+            axios.get('http://localhost:3000/api/archive').then(res => {
                 this.loading = false
                 this.tableData = res.data
             })
@@ -84,7 +85,14 @@ export default {
 }
 
 .archives #header{
+    margin-bottom: 15px;
     font-family: 'CeraPro Thin';
     font-size: 40px;
+}
+
+.archives #subheader {
+    margin-top: 0px;
+    font-family: 'CeraPro Regular';
+    font-size: 18px;
 }
 </style>
