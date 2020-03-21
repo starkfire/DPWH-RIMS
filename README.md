@@ -1,24 +1,41 @@
-# dpwh-ris
+# DPWH Road Inventory Management System
 
-## Project setup
+Front-End for the DPWH Road Inventory Management System
+
+## Features
+* Storing Data for:
+  * Potholes
+  * Guard Rails
+  * Signages
+* Supports CSV files
+* Geospatial Mapping for Items with Location Data
+
+## Requirements
+* Node.js
+* npm
+* MongoDB (required by the API)
+
+**You also have to install the [Dedicated API for DPWH-RIMS](https://github.com/starkfire/DPWH-RIMS-API)**
+
+## Install
+Navigate to the project directory and run:
 ```
 npm install
 ```
+This will install all dependencies specified in the `package.json` file.
 
-### Compiles and hot-reloads for development
+## Development
+Enable hot-reloading while developing and testing
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+To build the app
 ```
 npm run build
 ```
 
-### Lints and fixes files
+For linting
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
