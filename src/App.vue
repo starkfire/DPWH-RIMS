@@ -14,7 +14,6 @@
                 >
                     <el-menu-item index="1" @click="navigate('/')">Home</el-menu-item>
                     <el-menu-item index="2" @click="navigate('/dashboard')">Dashboard</el-menu-item>
-                    <el-menu-item index="3" @click="navigate('/documentation')">Documentation</el-menu-item>
                 </el-menu>
             </el-header>
             <el-main style="padding: 0px;">
