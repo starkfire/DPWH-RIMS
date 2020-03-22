@@ -17,6 +17,10 @@ const routes = [
                 component: () => import('../components/Manager.vue')
             },
             {
+                path: 'report',
+                component: () => import('../components/Report.vue')
+            },
+            {
                 path: 'archives',
                 component: () => import('../components/Archives.vue')
             },
