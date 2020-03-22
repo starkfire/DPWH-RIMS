@@ -6,12 +6,14 @@ import App from './App.vue'
 import {
 	Button,
 	Col,
+	Form,
 	Icon,
 	Input,
 	InputNumber,
 	message,
 	Modal,
 	notification,
+	Radio,
 	Row,
 	Table,
 	Upload
@@ -31,12 +33,14 @@ Vue.use(ElementUI)
 
 Vue.use(Button)
 Vue.use(Col)
+Vue.use(Form)
 Vue.use(Icon)
 Vue.use(Input)
 Vue.use(InputNumber)
 Vue.use(message)
 Vue.use(Modal)
 Vue.use(notification)
+Vue.use(Radio)
 Vue.use(Row)
 Vue.use(Table)
 Vue.use(Upload)
