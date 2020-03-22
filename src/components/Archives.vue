@@ -73,6 +73,16 @@ export default {
             axios.get('http://localhost:3000/api/archive').then(res => {
                 this.loading = false
                 this.tableData = res.data
+            }).catch(err => this.handleNetworkError(err))
+        },
+        handleNetworkError (err) {
+            this.loading = false
+            this.$notification.config({
+                placement: 'bottomLeft'
+            })
+            this.$notification['error']({
+                message: `Cannot Connect to API`,
+                description: 'Please check if the API is running and accessible'
             })
         }
     }
