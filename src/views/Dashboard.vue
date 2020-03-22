@@ -16,8 +16,12 @@
 					<i class="el-icon-coin"></i>
 					<span>Inventory Manager</span>
 				</el-menu-item>
-				<el-menu-item index="2" @click="navigate('/dashboard/archives')">
-					<i class="el-icon-coin"></i>
+				<el-menu-item index="2" @click="navigate('/dashboard/report')">
+					<i class="el-icon-warning-outline"></i>
+					<span>Report</span>
+				</el-menu-item>
+				<el-menu-item index="3" @click="navigate('/dashboard/archives')">
+					<i class="el-icon-takeaway-box"></i>
 					<span>Archives</span>
 				</el-menu-item>
 			</el-menu>
@@ -60,6 +64,8 @@ export default {
 			let page = currentUrl[currentUrl.length-1]
 			switch (page) {
 				case 'archives':
+					return '3'
+				case 'report':
 					return '2'
 				case 'manager':
 					return '1'
