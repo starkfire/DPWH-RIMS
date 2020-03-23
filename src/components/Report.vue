@@ -93,12 +93,12 @@
                         <div>
                             <a-popconfirm
                                 title="Are you sure you want to delete this data?"
-                                @confirm="deleteReport(entries[index]._id)"
+                                @confirm="deleteReport(entries[index]._id, index)"
                                 @cancel="cancel"
                                 okText="Yes"
                                 cancelText="No"
                             >
-                                Delete
+                                <a>Delete</a>
                             </a-popconfirm>
                         </div>
                     </a-list-item>
@@ -167,7 +167,7 @@ export default {
             }).catch(err => this.handleNetworkError(err))
         },
         // performs delete requests
-        deleteReport(id, e) {
+        deleteReport(id, index, e) {
             console.log(e)
             axios.delete(`http://127.0.0.1:3000/api/pothole/${id}`, {
                 headers: {
@@ -176,6 +176,8 @@ export default {
             }).then(res => {
                 console.log('Delete Success')
             }).catch(err => this.handleNetworkError(err))
+            this.entriesVisible.splice(index, 1)
+            this.getInitialData()
             this.$message.success('Delete success')
         },
         // respond on canceled deletion
