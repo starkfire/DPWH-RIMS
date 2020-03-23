@@ -1,12 +1,48 @@
 <template>
     <div class="asset-manager">
         <a-row :gutter="12">
-            <a-col :span="14">
+            <a-col :span="20">
                 <p id="header">Manager</p>
             </a-col>
-            <a-col :span="8">
+            <a-col :span="2">
                 <br>
-                <a-input-search placeholder="Search Data" style="float:right;" />
+                <a-button type="primary" @click="() => postVisible = true">Post Data</a-button>
+                <a-modal
+                    title="Post Data"
+                    centered
+                    v-model="postVisible"
+                    @ok="() => postVisible = false"
+                >
+                    <a-form :form="form" @submit="handleSubmit">
+                        <a-form-item label="Type">
+                            <a-radio-group v-decorator="['radio-button', { rules: [{ required: true, message: 'Please select the type' }] }]">
+                                <a-radio-button value="guardRail">Guard Rail</a-radio-button>
+                                <a-radio-button value="signage">Signage</a-radio-button>
+                            </a-radio-group>
+                        </a-form-item>
+                        <a-form-item label="Value">
+                            <a-input v-decorator="['value']" />
+                        </a-form-item>
+                        <a-row :gutter="12">
+                            <a-col :span="12">
+                                <a-form-item label="Latitude">
+                                    <a-input v-decorator="['latitude']" />
+                                </a-form-item>
+                            </a-col>
+                            <a-col :span="12">
+                                <a-form-item label="Latitude">
+                                    <a-input v-decorator="['longitude']" />
+                                </a-form-item>
+                            </a-col>
+                        </a-row>
+                        <a-form-item label="Address">
+                            <a-input v-decorator="['address', { rules: [{ required: true, message: 'Please specify an address' }] }]" />
+                        </a-form-item>
+                        <a-form-item>
+                            <a-button type="primary" html-type="submit">Submit</a-button>
+                        </a-form-item>
+                    </a-form>
+                </a-modal>
             </a-col>
             <a-col :span="2">
                 <br>
@@ -94,6 +130,7 @@ export default {
     data() {
         return {
             loading: false,
+            postVisible: false,
             modalVisible: false,
             tableData: [],
             columns
