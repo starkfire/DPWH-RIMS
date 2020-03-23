@@ -90,7 +90,17 @@
                         <a-list-item-meta :description="`(${item.location[0]}, ${item.location[1]})`">
                             <p slot="title">{{ item.address }}</p>
                         </a-list-item-meta>
-                        <div><a @click="deleteReport(entries[index]._id)">Delete</a></div>
+                        <div>
+                            <a-popconfirm
+                                title="Are you sure you want to delete this data?"
+                                @confirm="deleteReport(entries[index]._id)"
+                                @cancel="cancel"
+                                okText="Yes"
+                                cancelText="No"
+                            >
+                                Delete
+                            </a-popconfirm>
+                        </div>
                     </a-list-item>
                 </a-list>
             </a-col>
@@ -127,6 +137,7 @@ export default {
         this.getInitialData()
     },
     methods: {
+        // fetches existing reports
         getCount() {
             axios.get('http://127.0.0.1:3000/api/pothole').then(res => {
                 this.count = Object.keys(res.data)
@@ -155,7 +166,9 @@ export default {
                 callback(res)
             }).catch(err => this.handleNetworkError(err))
         },
-        deleteReport(id) {
+        // performs delete requests
+        deleteReport(id, e) {
+            console.log(e)
             axios.delete(`http://127.0.0.1:3000/api/pothole/${id}`, {
                 headers: {
                     Authorization: 'authorization'
@@ -163,7 +176,14 @@ export default {
             }).then(res => {
                 console.log('Delete Success')
             }).catch(err => this.handleNetworkError(err))
+            this.$message.success('Delete success')
         },
+        // respond on canceled deletion
+        cancel(e) {
+            console.log(e)
+            this.$message.error('Delete failed')
+        },
+        // pagination
         onLoadMore(){
             this.loadingMore = true
             if(this.remaining < 10){
@@ -183,6 +203,7 @@ export default {
                 })
             }
         },
+        // handling network errors
         handleNetworkError (err) {
             this.loading = false
             this.showLoadingMore = false
@@ -194,6 +215,7 @@ export default {
                 description: 'Please check if the API is running and accessible'
             })
         },
+        // handles report submission
         handleSubmit(e) {
             e.preventDefault()
 
