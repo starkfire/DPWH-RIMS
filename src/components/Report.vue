@@ -61,11 +61,37 @@
             </a-col>
         </a-row>
         <a-row>
-            <a-col :span="16">
-                Map
+            <a-col :span="15">
             </a-col>
-            <a-col :span="8">
-                Inputs
+            <a-col :span="9">
+                <a-list
+                    :loading="loading"
+                    itemLayout="horizontal"
+                    :dataSource="entries"
+                    style="padding-left: 12px;"
+                >
+                    <div 
+                        v-if="showLoadingMore"
+                        slot="loadMore"
+                        :style="{
+                            textAlign: 'center',
+                            marginTop: '12px',
+                            height: '32px',
+                            lineHeight: '32px'
+                        }"
+                    >
+                        <div>
+                            <a-spin v-if="loadingMore" />
+                            <a-button v-else @click="onLoadMore">Load More</a-button>
+                        </div>
+                    </div>
+                    <a-list-item slot="renderItem" slot-scope="item, index">
+                        <a-list-item-meta :description="`(${item.location[0]}, ${item.location[1]})`">
+                            <p slot="title">{{ item.address }}</p>
+                        </a-list-item-meta>
+                        <div v-show="false">#{{ entries[index].id }}</div>
+                    </a-list-item>
+                </a-list>
             </a-col>
         </a-row>
     </div>
@@ -77,13 +103,82 @@ export default {
     name: 'Report',
     data() {
         return {
-            modalVisible: false
+            modalVisible: false,
+            entries: [],
+            entriesVisible: [],
+            count: 0,
+            loading: true,
+            loadingMore: false,
+            showLoadingMore: true,
+            remaining: 0
         }
     },
     beforeCreate() {
         this.form = this.$form.createForm(this, { name: 'damage_report' })
     },
+    mounted() {
+        this.getCount()
+        this.getInitialData()
+    },
     methods: {
+        getCount() {
+            axios.get('http://127.0.0.1:3000/api/pothole').then(res => {
+                this.count = Object.keys(res.data)
+            })
+        },
+        getInitialData() {
+            this.fetchData(res => {
+                this.loading = false
+                this.entries = res.data
+                if(this.count < 10) {
+                    for(let i = 0; i < this.count; i++) {
+                        this.entriesVisible.push(this.entries[i])
+                    }
+                    this.showLoadingMore = false
+                    this.remaining = 0
+                } else {
+                    for(let i = 0; i < 10; i++){
+                        this.entriesVisible.push(this.entries[i])
+                    }
+                    this.remaining = this.entries.length - this.entriesVisible.length
+                }
+            })
+        },
+        fetchData(callback) {
+            axios.get('http://127.0.0.1:3000/api/pothole').then(res => {
+                callback(res)
+            }).catch(err => this.handleNetworkError(err))
+        },
+        onLoadMore(){
+            this.loadingMore = true
+            if(this.remaining < 10){
+                for(let i = 0; i < this.remaining; i++){
+                    this.entriesVisible.push(this.entries[i])
+                }
+                this.showLoadingMore = false
+                this.remaining = 0
+            }else{
+                for(let i = 0; i < 10; i++){
+                    this.entriesVisible.push(this.entries[i])
+                }
+                this.loadingMore = false
+                this.remaining = this.entries.length - this.entriesVisible.length
+                this.$nextTick(() => {
+                    window.dispatchEvent(new Event('resize'))
+                })
+            }
+        },
+        handleNetworkError (err) {
+            this.loading = false
+            this.showLoadingMore = false
+            this.$notification.config({
+                placement: 'bottomLeft'
+            })
+            this.$notification['error']({
+                message: `Cannot Connect to API`,
+                description: 'Please check if the API is running and accessible'
+            })
+        },
         handleSubmit(e) {
             e.preventDefault()
 
