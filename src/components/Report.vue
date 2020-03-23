@@ -68,7 +68,7 @@
                 <a-list
                     :loading="loading"
                     itemLayout="horizontal"
-                    :dataSource="entries"
+                    :dataSource="entriesVisible"
                     style="padding-left: 12px;"
                 >
                     <div 
@@ -147,14 +147,14 @@ export default {
             this.fetchData(res => {
                 this.loading = false
                 this.entries = res.data
-                if(this.count < 10) {
+                if(this.count < 5) {
                     for(let i = 0; i < this.count; i++) {
                         this.entriesVisible.push(this.entries[i])
                     }
                     this.showLoadingMore = false
                     this.remaining = 0
                 } else {
-                    for(let i = 0; i < 10; i++){
+                    for(let i = 0; i < 5; i++){
                         this.entriesVisible.push(this.entries[i])
                     }
                     this.remaining = this.entries.length - this.entriesVisible.length
@@ -188,14 +188,14 @@ export default {
         // pagination
         onLoadMore(){
             this.loadingMore = true
-            if(this.remaining < 10){
+            if(this.remaining < 5){
                 for(let i = 0; i < this.remaining; i++){
                     this.entriesVisible.push(this.entries[i])
                 }
                 this.showLoadingMore = false
                 this.remaining = 0
             }else{
-                for(let i = 0; i < 10; i++){
+                for(let i = 0; i < 5; i++){
                     this.entriesVisible.push(this.entries[i])
                 }
                 this.loadingMore = false
