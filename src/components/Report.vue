@@ -90,7 +90,7 @@
                         <a-list-item-meta :description="`(${item.location[0]}, ${item.location[1]})`">
                             <p slot="title">{{ item.address }}</p>
                         </a-list-item-meta>
-                        <div v-show="false">#{{ entries[index].id }}</div>
+                        <div><a @click="deleteReport(entries[index]._id)">Delete</a></div>
                     </a-list-item>
                 </a-list>
             </a-col>
@@ -153,6 +153,15 @@ export default {
         fetchData(callback) {
             axios.get('http://127.0.0.1:3000/api/pothole').then(res => {
                 callback(res)
+            }).catch(err => this.handleNetworkError(err))
+        },
+        deleteReport(id) {
+            axios.delete(`http://127.0.0.1:3000/api/pothole/${id}`, {
+                headers: {
+                    Authorization: 'authorization'
+                },
+            }).then(res => {
+                console.log('Delete Success')
             }).catch(err => this.handleNetworkError(err))
         },
         onLoadMore(){
