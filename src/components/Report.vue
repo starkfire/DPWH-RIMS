@@ -226,6 +226,9 @@ export default {
                     return
                 }
 
+                let loader = this.$message.loading('Publishing data...', 0)
+                setTimeout(loader, 1000)
+
                 const formData = {
                     length: fieldsValue['length'],
                     width: fieldsValue['width'],
@@ -243,7 +246,10 @@ export default {
                     },
                     data: formData
                 }).then(res => {
-                    return
+                    this.$message.destroy()
+                    this.$message.success('Data Published')
+                }).catch(err => {
+                    this.$message.error('Unknown error occurred')
                 })
             })
         }
