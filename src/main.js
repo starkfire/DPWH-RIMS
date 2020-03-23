@@ -14,6 +14,7 @@ import {
 	message,
 	Modal,
 	notification,
+	Popconfirm,
 	Radio,
 	Row,
 	Table,
@@ -42,6 +43,7 @@ Vue.use(List)
 Vue.use(message)
 Vue.use(Modal)
 Vue.use(notification)
+Vue.use(Popconfirm)
 Vue.use(Radio)
 Vue.use(Row)
 Vue.use(Table)
