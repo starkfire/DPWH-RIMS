@@ -10,6 +10,7 @@ import {
 	Icon,
 	Input,
 	InputNumber,
+	List,
 	message,
 	Modal,
 	notification,
@@ -37,6 +38,7 @@ Vue.use(Form)
 Vue.use(Icon)
 Vue.use(Input)
 Vue.use(InputNumber)
+Vue.use(List)
 Vue.use(message)
 Vue.use(Modal)
 Vue.use(notification)
