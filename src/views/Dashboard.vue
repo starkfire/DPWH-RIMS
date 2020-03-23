@@ -10,7 +10,7 @@
 				background-color="#222"
 				text-color="#fff"
 				active-text-color="#ffd04b"
-				style="min-height: 768px; border-right: 0px;"
+				style="min-height: 768px; border-right: 0px; height: 100%;"
 			>
 				<el-menu-item index="1" @click="navigate('/dashboard/manager')">
 					<i class="el-icon-coin"></i>
