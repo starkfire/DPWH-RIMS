@@ -23,9 +23,6 @@ export default {
             locations: {}
         }
     },
-    created() {
-        this.data = this.fetchData()
-    },
     mounted() {
         const INITIAL_VIEW_STATE = {
             latitude: 13.5952,
@@ -47,14 +44,14 @@ export default {
             type: ScatterplotLayer,
             data: fetch('http://localhost:3000/api/pothole').then(res => res.json()),
             getPosition: d => [d.location[1], d.location[0]],
-            getRadius: 10,
-            getFillColor: [219, 26, 36],
-            radiusMinPixels: 10
+            getRadius: 3,
+            getFillColor: [255, 48, 90],
+            radiusMinPixels: 3
         })
 
         map.on('load', () => {
             map.addLayer(newLayer)
         })
-    },
+    }
 }
 </script>
