@@ -119,8 +119,8 @@ const columns = [
     },
     {
         title: 'Value',
-        key: 'type',
-        dataIndex: 'type'
+        key: 'value',
+        dataIndex: 'value'
     }
 ]
 
