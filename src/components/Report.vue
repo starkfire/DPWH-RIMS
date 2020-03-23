@@ -62,6 +62,7 @@
         </a-row>
         <a-row>
             <a-col :span="15">
+                <PotholeMap></PotholeMap>
             </a-col>
             <a-col :span="9">
                 <a-list
@@ -99,8 +100,13 @@
 <script>
 import * as axios from 'axios'
 
+import PotholeMap from '../components/PotholeMap.vue'
+
 export default {
     name: 'Report',
+    components: {
+        PotholeMap
+    },
     data() {
         return {
             modalVisible: false,
