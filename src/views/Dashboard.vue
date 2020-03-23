@@ -1,8 +1,9 @@
 <template>
   <div>
     <el-row>
-        <el-col :span="4">
+        <el-col :span="2">
             <el-menu
+				:collapse="isCollapse"
 				:default-active="activeIndex"
 				class="el-menu-vertical-demo"
 				@open="handleOpen"
@@ -26,7 +27,7 @@
 				</el-menu-item>
 			</el-menu>
         </el-col>
-        <el-col :span="20" class="dashboard-main">
+        <el-col :span="22" class="dashboard-main">
 			<router-view></router-view>
         </el-col>
     </el-row>
@@ -39,7 +40,8 @@ export default {
 	name: 'Dashboard',
 	data() {
 		return{
-			activeIndex: '1'
+			activeIndex: '1',
+			isCollapse: true
 		}
 	},
 	created() {
