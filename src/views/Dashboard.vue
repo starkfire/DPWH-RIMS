@@ -1,37 +1,37 @@
 <template>
-  <div>
-    <el-row>
-        <el-col :span="2">
-            <el-menu
-				:collapse="isCollapse"
-				:default-active="activeIndex"
-				class="el-menu-vertical-demo"
-				@open="handleOpen"
-				@close="handleClose"
-				background-color="#222"
-				text-color="#fff"
-				active-text-color="#ffd04b"
-				style="min-height: 768px; border-right: 0px; height: 100%;"
-			>
-				<el-menu-item index="1" @click="navigate('/dashboard/manager')">
-					<i class="el-icon-coin"></i>
-					<span>Inventory Manager</span>
-				</el-menu-item>
-				<el-menu-item index="2" @click="navigate('/dashboard/report')">
-					<i class="el-icon-warning-outline"></i>
-					<span>Report</span>
-				</el-menu-item>
-				<el-menu-item index="3" @click="navigate('/dashboard/archives')">
-					<i class="el-icon-takeaway-box"></i>
-					<span>Archives</span>
-				</el-menu-item>
-			</el-menu>
-        </el-col>
-        <el-col :span="22" class="dashboard-main">
-			<router-view></router-view>
-        </el-col>
-    </el-row>
-  </div>
+	<div>
+		<el-container>
+			<el-aside style="width: 75px;">
+				<el-menu
+					:collapse="isCollapse"
+					:default-active="activeIndex"
+					class="el-menu-vertical-demo"
+					@open="handleOpen"
+					@close="handleClose"
+					background-color="#222"
+					text-color="#fff"
+					active-text-color="#ffd04b"
+					style="min-height: 768px; border-right: 0px; height: 100%;"
+				>
+					<el-menu-item index="1" @click="navigate('/dashboard/manager')">
+						<i class="el-icon-coin"></i>
+						<span>Inventory Manager</span>
+					</el-menu-item>
+					<el-menu-item index="2" @click="navigate('/dashboard/report')">
+						<i class="el-icon-warning-outline"></i>
+						<span>Report</span>
+					</el-menu-item>
+					<el-menu-item index="3" @click="navigate('/dashboard/archives')">
+						<i class="el-icon-takeaway-box"></i>
+						<span>Archives</span>
+					</el-menu-item>
+				</el-menu>
+			</el-aside>
+			<el-main class="dashboard-main">
+				<router-view></router-view>
+			</el-main>
+		</el-container>
+	</div>
 </template>
 <script>
 import router from '../router'
