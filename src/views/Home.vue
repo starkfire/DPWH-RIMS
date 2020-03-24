@@ -3,7 +3,7 @@
 		<div class="first-panel">
 			<div id="first-panel-content">
 				<h2 style="letter-spacing: 8px; font-family: 'CeraPro Bold'; color: white;">DPWH-RIMS</h2>
-				<p style="font-family: 'CeraPro Light';">A Smarter Road Inventory Management for the Department of Public Works and Highways</p>
+				<p style="font-family: 'CeraPro Light';">A Road Inventory Management for the Department of Public Works and Highways</p>
 				<p style="font-family: 'CeraPro Bold'; font-size: 12px;">MADE POSSIBLE WITH</p>
 				<span id="stack-logos">
 					<a href="https://deck.gl/"><img src="../assets/images/uber.png" style="height: 40px;" /></a>
@@ -12,56 +12,6 @@
 					<a href="https://www.mongodb.com/"><img src="../assets/images/mongodb.png" style="height: 40px;" /></a>
 				</span>
 			</div>
-		</div>
-		<div class="second-panel">
-			<el-row>
-				<el-col :span="12">
-					<div id="second-panel-content-a">
-						<h2 style="letter-spacing: 4px; font-family: 'CeraPro Bold'; color: white;">Technology Stack</h2>
-						<p style="font-family: 'CeraPro Light'">We use modern and well-maintained open source libraries to provide a competitive edge</p>
-					</div>
-				</el-col>
-				<el-col :span="12">
-					<div id="second-panel-content-b">
-						<div>
-							<el-row id="library-header">
-								<img src="../assets/images/uber.png" style="height: 40px;" />
-								Uber DeckGL
-							</el-row>
-							<el-row id="library-content">
-								We use Deck.gl, a data-driven spatial visualization library by Uber Engineering.
-							</el-row>
-						</div>
-						<div class="library">
-							<el-row id="library-header">
-								<img src="../assets/images/mapbox-logo.png" style="height: 40px;" />
-								Mapbox
-							</el-row>
-							<el-row id="library-content">
-								Mapbox is a customizable open source mapping platform which uses OpenStreetMap.
-							</el-row>
-						</div>
-						<div class="library">
-							<el-row id="library-header">
-								<img src="../assets/images/vue.png" style="height: 40px;" />
-								Vue.js
-							</el-row>
-							<el-row id="library-content">
-								DPWH-RIMS is implemented as a Single Page Application (SPA) to provide data reactivity and better performance
-							</el-row>
-						</div>
-						<div class="library">
-							<el-row id="library-header">
-								<img src="../assets/images/mongodb.png" style="height: 40px;" />
-								MongoDB
-							</el-row>
-							<el-row id="library-content">
-								MongoDB is a document-oriented, NoSQL database solution.
-							</el-row>
-						</div>
-					</div>
-				</el-col>
-			</el-row>
 		</div>
 	</div>
 </template>
