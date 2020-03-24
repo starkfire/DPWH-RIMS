@@ -79,12 +79,13 @@
                 </a-modal>
             </a-col>
         </a-row>
-        <a-row>
+        <a-row style="margin-bottom: 75px;">
             <a-table
                 :columns="columns"
-                :rowKey="tableData => tableData._id"
-                :dataSource="tableData"
+                :rowKey="entriesVisible => entriesVisible._id"
+                :dataSource="entriesVisible"
                 :loading="loading"
+                :pagination="false"
             >
                 <span slot="date" slot-scope="item">
                     {{ item.split('T')[0] }}
@@ -93,6 +94,13 @@
                     {{ item.split('T')[1].split('.')[0] }}
                 </span>
             </a-table>
+            <br>
+            <center>
+                <div>
+                    <a-spin v-if="loadingMore" />
+                    <a-button v-else @click="onLoadMore">Load More</a-button>
+                </div>
+            </center>
         </a-row>
     </div>
 </template>
@@ -129,14 +137,88 @@ export default {
     name: 'Manager',
     data() {
         return {
-            loading: false,
+            loading: true,
+            loadingMore: false,
+            showLoadingMore: true,
+            entries: [],
+            entriesVisible: [],
+            count: 0,
+            remaining: 0,
             postVisible: false,
             modalVisible: false,
-            tableData: [],
             columns
         }
     },
+    beforeCreate() {
+        this.form = this.$form.createForm(this, { name: 'post_data' })
+    },
+    mounted() {
+        this.getCount()
+        this.getInitialData()
+    },
     methods: {
+        // count number of items in database
+        getCount() {
+            axios.get('http://127.0.0.1:3000/api/asset/').then(res => {
+                let countArr = Object.keys(res.data)
+                this.count = countArr.filter(x => x).length
+            })
+        },
+        // fetch inventory
+        getInitialData() {
+            this.fetchData(res => {
+                this.loading = false
+                this.entries = res.data
+                if (this.count < 5) {
+                    for(let i = 0; i < this.count; i++) {
+                        this.entriesVisible.push(this.entries[i])
+                    }
+                    this.showLoadingMore = false
+                } else {
+                    for(let i = 0; i < 5; i++) {
+                        this.entriesVisible.push(this.entries[i])
+                    }
+                    this.remaining = this.entries.length - this.entriesVisible.length
+                }
+            })
+        },
+        fetchData(callback) {
+            axios.get('http://127.0.0.1:3000/api/asset/').then(res => {
+                callback(res)
+            }).catch(err => this.handleNetworkError(err))
+        },
+        // pagination
+        onLoadMore(){
+            this.loadingMore = true
+            if(this.remaining < 5){
+                for(let i = 0; i < this.remaining; i++){
+                    this.entriesVisible.push(this.entries[i])
+                }
+                this.showLoadingMore = false
+                this.remaining = 0
+            }else{
+                for(let i = 0; i < 5; i++){
+                    this.entriesVisible.push(this.entries[i])
+                }
+                this.loadingMore = false
+                this.remaining = this.entries.length - this.entriesVisible.length
+                this.$nextTick(() => {
+                    window.dispatchEvent(new Event('resize'))
+                })
+            }
+        },
+        // handle network error
+        handleNetworkError (err) {
+            this.loading = false
+            this.showLoadingMore = false
+            this.$notification.config({
+                placement: 'bottomLeft'
+            })
+            this.$notification['error']({
+                message: `Cannot Connect to API`,
+                description: 'Please check if the API is running and accessible'
+            })
+        },
         handleRemove(file, fileList) {
             console.log(file, fileList)
         },
