@@ -137,12 +137,14 @@ export default {
         this.getInitialData()
     },
     methods: {
-        // fetches existing reports
+        // count number of reports in database
         getCount() {
             axios.get('http://127.0.0.1:3000/api/pothole').then(res => {
-                this.count = Object.keys(res.data)
+                let countArr = Object.keys(res.data)
+                this.count = countArr.filter(x => x).length
             })
         },
+        // fetch existing reports
         getInitialData() {
             this.fetchData(res => {
                 this.loading = false
@@ -152,7 +154,6 @@ export default {
                         this.entriesVisible.push(this.entries[i])
                     }
                     this.showLoadingMore = false
-                    this.remaining = 0
                 } else {
                     for(let i = 0; i < 5; i++){
                         this.entriesVisible.push(this.entries[i])
@@ -166,7 +167,7 @@ export default {
                 callback(res)
             }).catch(err => this.handleNetworkError(err))
         },
-        // performs delete requests
+        // delete a report
         deleteReport(id, index, e) {
             console.log(e)
             axios.delete(`http://127.0.0.1:3000/api/pothole/${id}`, {
@@ -176,8 +177,11 @@ export default {
             }).then(res => {
                 console.log('Delete Success')
             }).catch(err => this.handleNetworkError(err))
+            
+            // update data
+            this.entries.splice(index, 1)
             this.entriesVisible.splice(index, 1)
-            this.getInitialData()
+            this.count -= 1
             this.$message.success('Delete success')
         },
         // respond on canceled deletion
