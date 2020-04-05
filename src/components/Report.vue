@@ -7,7 +7,7 @@
             </a-col>
             <a-col :span="2">
                 <br>
-                <a-button type="danger" ghost @click="() => modalVisible = true">Button</a-button>
+                <a-button type="danger" ghost @click="() => modalVisible = true">Report</a-button>
                 <a-modal
                     title="Report Damage"
                     centered
