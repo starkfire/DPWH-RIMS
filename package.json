@@ -11,7 +11,7 @@
     "@deck.gl/core": "^8.0.13",
     "@deck.gl/layers": "^8.0.13",
     "@turf/turf": "^5.1.6",
-    "ant-design-vue": "^1.4.11",
+    "ant-design-vue": "^1.4.12",
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "core-js": "^3.4.4",
@@ -21,6 +21,7 @@
     "less": "^3.11.1",
     "mapbox-gl": "^1.7.0",
     "mapbox-gl-vue": "^2.0.4",
+    "minimist": "^1.2.5",
     "mongodb": "^3.5.2",
     "mongoose": "^5.8.11",
     "vue": "^2.6.11"
