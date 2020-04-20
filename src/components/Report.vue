@@ -16,7 +16,7 @@
                 >
                     <a-form :form="form" @submit="handleSubmit">
                         <a-form-item label="Type">
-                            <a-radio-group v-decorator="['radio-button', { rules: [{ required: true, message: 'Please select the type' }] }]">
+                            <a-radio-group v-decorator="['type', { rules: [{ required: true, message: 'Please select the type' }] }]">
                                 <a-radio-button value="pothole">Pothole</a-radio-button>
                                 <a-radio-button value="crack">Crack</a-radio-button>
                             </a-radio-group>
@@ -234,6 +234,7 @@ export default {
                 setTimeout(loader, 1000)
 
                 const formData = {
+                    type: fieldsValue['type'],
                     length: fieldsValue['length'],
                     width: fieldsValue['width'],
                     depth: fieldsValue['depth'],

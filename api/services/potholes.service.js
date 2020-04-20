@@ -16,6 +16,7 @@ module.exports = {
     },
     createOne: async (req, res) => {
         const pothole = new Pothole({
+            type: req.body.type,
             dimensions: [new Number(req.body.length), new Number(req.body.width), new Number(req.body.depth)],
             address: req.body.address,
             location: [new Number(req.body.lat), new Number(req.body.lon)]
