@@ -1,6 +1,9 @@
 const mongoose = require('mongoose')
 
 const potholeSchema = new mongoose.Schema({
+    type: {
+        type: String
+    },
     date: {
         type: Date,
         required: true,
