@@ -93,6 +93,9 @@
                 <span slot="time" slot-scope="item">
                     {{ item.split('T')[1].split('.')[0] }}
                 </span>
+                <span slot="type" slot-scope="item">
+                    {{ item.toUpperCase() }}
+                </span>
             </a-table>
             <br>
             <center>
@@ -123,7 +126,8 @@ const columns = [
     {
         title: 'Type',
         key: 'type',
-        dataIndex: 'type'
+        dataIndex: 'type',
+        scopedSlots: { customRender: 'type' }
     },
     {
         title: 'Value',
