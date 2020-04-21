@@ -15,7 +15,7 @@
                 >
                     <a-form :form="form" @submit="handleSubmit">
                         <a-form-item label="Type">
-                            <a-radio-group v-decorator="['radio-button', { rules: [{ required: true, message: 'Please select the type' }] }]">
+                            <a-radio-group v-decorator="['type', { rules: [{ required: true, message: 'Please select the type' }] }]">
                                 <a-radio-button value="guardRail">Guard Rail</a-radio-button>
                                 <a-radio-button value="signage">Signage</a-radio-button>
                             </a-radio-group>
@@ -30,7 +30,7 @@
                                 </a-form-item>
                             </a-col>
                             <a-col :span="12">
-                                <a-form-item label="Latitude">
+                                <a-form-item label="Longitude">
                                     <a-input v-decorator="['longitude']" />
                                 </a-form-item>
                             </a-col>
@@ -217,6 +217,39 @@ export default {
             this.$notification['error']({
                 message: `Cannot Connect to API`,
                 description: 'Please check if the API is running and accessible'
+            })
+        },
+        // handles asset posting
+        handleSubmit(e) {
+            e.preventDefault()
+
+            this.form.validateFields((err, fieldsValue) => {
+                if (err) return
+
+                let loader = this.$message.loading('Publishing data...', 0)
+                setTimeout(loader, 1000)
+
+                const formData = {
+                    type: fieldsValue['type'],
+                    value: fieldsValue['value'],
+                    lat: fieldsValue['latitude'],
+                    lon: fieldsValue['longitude'],
+                    address: fieldsValue['address']
+                }
+
+                axios({
+                    method: 'POST',
+                    url: 'http://127.0.0.1:3000/api/asset',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: formData
+                }).then(res => {
+                    this.$message.destroy()
+                    this.$message.success('Data Published')
+                }).catch(err => {
+                    this.$message.error('Unknown error occurred')
+                })
             })
         },
         handleRemove(file, fileList) {
